@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jaswin Pinnu | GTA Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=DM+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --pink: #ff4f8b;
+  --orange: #ff9b42;
+  --cyan: #72f4e8;
+  --white: #fff;
+  --muted: #e4e0ee;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: #100d18;
+  color: white;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.background {
+  position: fixed;
+  inset: 0;
+  z-index: -3;
+
+  background-image: url("./background.jpg");
+  background-position: center center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.background::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(13, 8, 28, 0.78),
+    rgba(13, 8, 28, 0.35),
+    rgba(13, 8, 28, 0.25)
+  );
+}
+
+
+
+/* INTRO */
+#intro {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  background:
+    linear-gradient(rgba(12, 8, 25, .75), rgba(12, 8, 25, .9)),
+    url("./background.jpg") center / cover;
+  transition: opacity .8s, visibility .8s;
+}
+
+#intro.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.intro-title {
+  font: 900 clamp(70px, 13vw, 145px)/.85 'Barlow Condensed';
+  text-transform: uppercase;
+  margin: 25px 0;
+}
+
+.intro-title span {
+  display: block;
+  color: transparent;
+  -webkit-text-stroke: 2px white;
+  margin-top: 10px;
+}
+
+.eyebrow, .kicker {
+  color: var(--cyan);
+  letter-spacing: 3px;
+  font-size: 11px;
+  text-transform: uppercase;
+}
+
+.intro-sub {
+  color: white;
+  letter-spacing: 3px;
+  font-size: 11px;
+  margin: 25px 0;
+}
+
+button, .btn {
+  display: inline-block;
+  padding: 14px 20px;
+  background: var(--pink);
+  color: #100d18;
+  border: 1px solid transparent;
+  font-weight: 900;
+  font-size: 11px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: .25s;
+}
+
+.btn.secondary {
+  background: rgba(0, 0, 0, .25);
+  border-color: white;
+  color: white;
+}
+
+button:hover, .btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 5px 5px var(--cyan);
+}
+
+/* NAVIGATION */
+.wrap {
+  width: min(1150px, 92%);
+  margin: auto;
+}
+
+nav {
+  height: 75px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #ffffff55;
+}
+
+.logo {
+  font: 900 28px 'Barlow Condensed';
+  text-shadow: 0 2px 8px #000;
+}
+
+.logo span {
+  color: var(--pink);
+}
+
+.links {
+  display: flex;
+  gap: 22px;
+}
+
+.links a {
+  font-size: 11px;
+  text-transform: uppercase;
+  font-weight: 700;
+  text-shadow: 0 2px 8px #000;
+}
+
+.links a:hover {
+  color: var(--cyan);
+}
+
+/* HERO */
+.hero {
+  min-height: 680px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 35px;
+  align-items: center;
+  padding: 55px 0;
+}
+
+h1 {
+  font: 900 clamp(76px, 10vw, 130px)/.82 'Barlow Condensed';
+  text-transform: uppercase;
+  margin: 28px 0;
+  text-shadow: 0 4px 18px #000;
+}
+
+h1 span {
+  display: block;
+  margin-top: 12px;
+  color: transparent;
+  -webkit-text-stroke: 1.5px white;
+}
+
+h1 em {
+  color: var(--orange);
+  font-style: normal;
+  -webkit-text-stroke: 0;
+}
+
+.hero p, .about-copy {
+  color: white;
+  font-size: 14px;
+  line-height: 1.9;
+  max-width: 470px;
+  text-shadow: 0 2px 8px #000;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 28px;
+}
+
+/* PROFILE PHOTO */
+.photo-box {
+  height: 520px;
+  position: relative;
+  overflow: hidden;
+  border: 2px solid #ffffff70;
+  background: rgba(15, 10, 25, .35);
+  box-shadow: 0 0 30px #0006;
+}
+
+.photo-box img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+}
+
+.photo-label {
+  position: absolute;
+  left: 15px;
+  top: 15px;
+  color: white;
+  font-size: 10px;
+  letter-spacing: 2px;
+  font-weight: 700;
+  text-shadow: 0 2px 8px #000;
+}
+
+.photo-label.bottom {
+  top: auto;
+  bottom: 15px;
+  color: var(--orange);
+}
+
+/* TICKER */
+.ticker {
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 16px 0;
+  background: rgba(10, 7, 20, .7);
+  border-block: 1px solid #ffffff40;
+  color: white;
+  font: 700 18px 'Barlow Condensed';
+  letter-spacing: 3px;
+}
+
+.ticker span {
+  display: inline-block;
+  padding-left: 100%;
+  animation: marquee 20s linear infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+/* CONTENT SECTIONS */
+section.content {
+  padding: 85px 0;
+}
+
+h2 {
+  font: 900 clamp(45px, 7vw, 75px)/.95 'Barlow Condensed';
+  text-transform: uppercase;
+  margin: 18px 0 35px;
+  text-shadow: 0 3px 12px #000;
+}
+
+h2 span {
+  color: var(--cyan);
+}
+
+.projects {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.card, .skill, .profile, .contact-box {
+  background: rgba(12, 9, 24, .76);
+  border: 1px solid #ffffff60;
+  backdrop-filter: blur(5px);
+  box-shadow: 0 8px 28px #0004;
+}
+
+.card {
+  padding: 28px;
+  transition: .25s;
+}
+
+.card:hover, .skill:hover {
+  border-color: var(--pink);
+  transform: translateY(-4px);
+}
+
+.card h3, .timeline h3 {
+  font: 800 28px 'Barlow Condensed';
+  text-transform: uppercase;
+  margin: 14px 0;
+  color: white;
+}
+
+.card p, .timeline p {
+  color: white;
+  font-size: 13px;
+  line-height: 1.9;
+  margin-bottom: 12px;
+}
+
+.tag {
+  display: inline-block;
+  padding: 6px 8px;
+  border: 1px solid #ffffff70;
+  font-size: 10px;
+  margin: 4px 3px 0 0;
+  color: white;
+}
+
+.about {
+  background: rgba(10, 7, 20, .55);
+  border-block: 1px solid #ffffff30;
+}
+
+.profile {
+  padding: 24px;
+  margin: 28px 0;
+  max-width: 800px;
+}
+
+.profile-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 14px 0;
+  border-bottom: 1px solid #ffffff30;
+  font-size: 12px;
+}
+
+.profile-row span {
+  color: #e0d9ed;
+}
+
+.profile-row b {
+  text-align: right;
+}
+
+.skills {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.skill {
+  padding: 22px;
+  transition: .25s;
+}
+
+.skill small {
+  color: var(--pink);
+  font-size: 10px;
+}
+
+.skill h3 {
+  font: 800 24px 'Barlow Condensed';
+  text-transform: uppercase;
+  margin: 12px 0;
+}
+
+.skill p {
+  color: white;
+  font-size: 12px;
+}
+
+.timeline {
+  border-left: 1px solid #ffffff80;
+  padding-left: 25px;
+  margin-left: 7px;
+}
+
+.timeline article {
+  position: relative;
+  margin: 30px 0;
+}
+
+.timeline article:before {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--pink);
+  left: -31px;
+  top: 4px;
+}
+
+.date {
+  color: var(--cyan);
+  font-size: 11px;
+  letter-spacing: 2px;
+}
+
+.contact-box {
+  padding: clamp(25px, 6vw, 65px);
+}
+
+.contact-box h2 span {
+  color: var(--pink);
+}
+
+.contact-box p {
+  color: white;
+  line-height: 1.9;
+}
+
+footer {
+  padding: 25px 0;
+  border-top: 1px solid #ffffff60;
+  color: white;
+  font-size: 11px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  text-shadow: 0 2px 8px #000;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: .7s;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media(max-width: 800px) {
+  .hero {
+    grid-template-columns: 1fr;
+    padding-top: 45px;
+  }
+
+  .photo-box {
+    height: 440px;
+  }
+
+  .projects {
+    grid-template-columns: 1fr;
+  }
+
+  .skills {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  section.content {
+    padding: 60px 0;
+  }
+
+  .float-item {
+    font-size: 16px;
+  }
+}
+
+@media(max-width: 480px) {
+  .links {
+    gap: 9px;
+  }
+
+  .links a {
+    font-size: 9px;
+  }
+
+  .photo-box {
+    height: 360px;
+  }
+
+  .profile-row {
+    font-size: 10px;
+  }
+
+  .skills {
+    gap: 8px;
+  }
+}
+
+@media(prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="background"></div>
+
+<div id="intro">
+  <div>
+    <div class="eyebrow">WELCOME TO THE CITY</div>
+    <div class="intro-title">JASWIN<span>PINNU.</span></div>
+    <div class="intro-sub">FULL STACK DEVELOPER · PLAYER 001</div>
+    <button id="enter">▶ ENTER THE CITY</button>
+  </div>
+</div>
+
+<header class="wrap">
+  <nav>
+    <a class="logo" href="#home">JASWIN<span>®</span></a>
+    <div class="links">
+      <a href="#work">Missions</a>
+      <a href="#about">Player</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+
+<section class="wrap hero" id="home">
+  <div>
+    <div class="eyebrow">BENGALURU, INDIA · PLAYER 001</div>
+    <h1>JASWIN<span>PINNU<em>.</em></span></h1>
+    <p>
+      Full Stack Developer. Code is my city; every project is a new mission.
+      I build responsive web experiences, work with Firebase, and explore AI/ML.
+    </p>
+    <div class="actions">
+      <a class="btn" href="#work">▶ Explore missions</a>
+      <a class="btn secondary" href="#contact">Start a mission ↗</a>
+    </div>
+  </div>
+
+  <div class="photo-box">
+    <div class="photo-label">PLAYER 001 // JASWIN PINNU</div>
+    <img src="./profile.png" alt="Jaswin Pinnu">
+    <div class="photo-label bottom">FULL STACK DEVELOPER INTERN</div>
+  </div>
+</section>
+
+<div class="ticker">
+  <span>
+  ✦HTML ✦ CSS ✦ JAVASCRIPT ✦ JAVA ✦ FIREBASE ✦ AI/ML ✦
+  </span>
+</div>
+
+<section class="wrap content" id="work">
+  <div class="kicker">01 / SELECTED MISSIONS</div>
+  <h2>Built in the <span>streets.</span></h2>
+
+  <div class="projects">
+    <article class="card reveal">
+      <div class="kicker">MISSION 01 — AI / ML</div>
+      <h3>Earth, decoded.</h3>
+      <p>
+        Vision Transformer-based land use and land cover classification
+        from satellite imagery using deep learning.
+      </p>
+      <span class="tag">DEEP LEARNING</span>
+      <span class="tag">ViT</span>
+      <span class="tag">COMPUTER VISION</span>
+    </article>
+
+    <article class="card reveal">
+      <div class="kicker">MISSION 02 — E-COMMERCE</div>
+      <h3>RK Fashions.</h3>
+      <p>
+        Responsive e-commerce application with Firebase authentication,
+        Google Sign-In, product listings, cart management, saved addresses,
+        UPI payment workflow, and order history.
+      </p>
+      <span class="tag">JAVASCRIPT</span>
+      <span class="tag">FIREBASE</span>
+      <span class="tag">LOCALSTORAGE</span>
+      <p><a href="https://github.com/jaswinpinnu" target="_blank" rel="noreferrer">GitHub ↗</a></p>
+    </article>
+  </div>
+</section>
+
+<section class="about content" id="about">
+  <div class="wrap">
+    <div class="kicker">02 / PLAYER PROFILE</div>
+    <h2>Not just playing.<br><span>Creating worlds.</span></h2>
+
+    <div class="profile reveal">
+      <div class="profile-row"><span>PLAYER NAME</span><b>JASWIN PINNU</b></div>
+      <div class="profile-row"><span>LOCATION</span><b>BENGALURU, INDIA</b></div>
+      <div class="profile-row"><span>DEGREE</span><b>B.TECH · CSE AI/ML · GITAM</b></div>
+      <div class="profile-row"><span>INTERMEDIATE</span><b>NARAYANA JUNIOR COLLEGE · 2022</b></div>
+      <div class="profile-row"><span>10TH / SSC</span><b>MONTESSORI INDUS · 2020</b></div>
+      <div class="profile-row"><span>STATUS</span><b style="color:var(--cyan)">LEVELING UP</b></div>
+    </div>
+
+    <h3>Developer by craft. Curious by default.</h3>
+    <p class="about-copy">
+      I'm a Full Stack Developer with internship experience building
+      responsive web applications using HTML, CSS, JavaScript, and Firebase,
+      with working knowledge of Java. I'm interested in creating useful
+      digital products and exploring artificial intelligence.
+    </p>
+  </div>
+</section>
+
+<section class="wrap content" id="skills">
+  <div class="kicker">03 / LOADOUT</div>
+  <h2>Tools of the <span>trade.</span></h2>
+
+  <div class="skills">
+    <div class="skill reveal"><small>01 / FRONTEND</small><h3>HTML5</h3><p>Web structure</p></div>
+    <div class="skill reveal"><small>02 / STYLING</small><h3>CSS3</h3><p>Responsive UI</p></div>
+    <div class="skill reveal"><small>03 / LOGIC</small><h3>JavaScript</h3><p>Interactions</p></div>
+    <div class="skill reveal"><small>04 / LANGUAGE</small><h3>Java</h3><p>Programming</p></div>
+    <div class="skill reveal"><small>05 / BACKEND</small><h3>Firebase</h3><p>Authentication</p></div>
+    <div class="skill reveal"><small>06 / AI</small><h3>Deep Learning</h3><p>Vision Transformers</p></div>
+    <div class="skill reveal"><small>07 / VISION</small><h3>Computer Vision</h3><p>Image classification</p></div>
+    <div class="skill reveal"><small>08 / WORKFLOW</small><h3>Teamwork</h3><p>Collaboration</p></div>
+  </div>
+</section>
+
+<section class="wrap content" id="experience">
+  <div class="kicker">04 / STORY MODE</div>
+  <h2>XP <span>earned.</span></h2>
+
+  <div class="timeline">
+    <article class="reveal">
+      <div class="date">2025 · BENGALURU</div>
+      <h3>Full Stack Developer Intern — Teachnook</h3>
+      <p>
+        Developed responsive front-end interfaces using HTML, CSS, and JavaScript.
+        Completed Full Stack Developer and Java Developer internship certifications.
+      </p>
+    </article>
+
+    <article class="reveal">
+      <div class="date">GITAM</div>
+      <h3>B.Tech — Computer Science & Engineering (AI & ML)</h3>
+      <p>
+        Studying software development and artificial intelligence,
+        including a Vision Transformer capstone project.
+      </p>
+    </article>
+
+    <article class="reveal">
+      <div class="date">2022 · NARAYANA JUNIOR COLLEGE</div>
+      <h3>Intermediate</h3>
+      <p>Completed Intermediate education in 2022.</p>
+    </article>
+
+    <article class="reveal">
+      <div class="date">2020 · MONTESSORI INDUS</div>
+      <h3>10th / SSC</h3>
+      <p>Completed SSC education in 2020.</p>
+    </article>
+  </div>
+</section>
+
+<section class="wrap content" id="contact">
+  <div class="contact-box reveal">
+    <div class="kicker">05 / NEW MISSION</div>
+    <h2>Let's make<br><span>something legendary.</span></h2>
+    <p>Have a role, collaboration, or project in mind? Let's connect.</p>
+
+    <div class="actions">
+      <a class="btn"
+   href="https://mail.google.com/mail/?view=cm&fs=1&to=jaswinpinnu@gmail.com"
+   target="_blank"
+   rel="noopener noreferrer">
+   ✉ Email me
+</a>
+      <a class="btn secondary" href="https://github.com/jaswinpinnu" target="_blank" rel="noreferrer">GitHub ↗</a>
+      <a class="btn secondary" href="https://linkedin.com/in/jaswin-pinnu-5b99572a3" target="_blank" rel="noreferrer">LinkedIn ↗</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="wrap">
+  <span>© 2026 JASWIN PINNU</span>
+  <span>LOS SANTOS STATE OF MIND — DEV MODE</span>
+</footer>
+
+<script>
+document.getElementById('enter').addEventListener('click', () => {
+  document.getElementById('intro').classList.add('hidden');
+});
+
+/* Reveal content while scrolling */
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
