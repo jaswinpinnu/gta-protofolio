@@ -554,6 +554,138 @@ footer {
     border: none !important;
     outline: none !important;
 }
+
+/* MOBILE RESPONSIVE REFINEMENTS */
+.menu-toggle {
+  display: none;
+  width: 44px;
+  height: 44px;
+  padding: 10px;
+  background: rgba(16, 13, 24, .78);
+  border: 1px solid rgba(255,255,255,.45);
+  border-radius: 6px;
+  box-shadow: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+}
+.menu-toggle span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: #fff;
+  border-radius: 2px;
+  transition: transform .2s ease, opacity .2s ease;
+}
+.menu-toggle:hover {
+  transform: none;
+  box-shadow: none;
+}
+.menu-toggle[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.menu-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.menu-toggle[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+img { max-width: 100%; }
+.wrap { width: min(1150px, calc(100% - 48px)); }
+.hero { min-width: 0; }
+.hero > *, .projects > *, .skills > * { min-width: 0; }
+.photo-box img { object-position: center 35%; }
+.btn { min-height: 46px; display: inline-flex; align-items: center; justify-content: center; text-align: center; }
+a, button { -webkit-tap-highlight-color: transparent; }
+section.content { scroll-margin-top: 18px; }
+#home, #work, #about, #skills, #experience, #contact { scroll-margin-top: 24px; }
+
+@media (max-width: 800px) {
+  .wrap { width: min(100% - 36px, 650px); }
+  nav { height: 68px; position: relative; }
+  .menu-toggle { display: flex; }
+  .links {
+    display: none;
+    position: absolute;
+    z-index: 30;
+    top: calc(100% + 1px);
+    left: 0;
+    right: 0;
+    padding: 12px;
+    gap: 0;
+    flex-direction: column;
+    background: rgba(16, 13, 24, .97);
+    border: 1px solid rgba(255,255,255,.25);
+    box-shadow: 0 14px 30px rgba(0,0,0,.35);
+  }
+  .links.open { display: flex; }
+  .links a {
+    display: block;
+    padding: 14px 12px;
+    font-size: 12px;
+    border-bottom: 1px solid rgba(255,255,255,.12);
+  }
+  .links a:last-child { border-bottom: 0; }
+  .hero {
+    min-height: auto;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 30px;
+    padding: 54px 0 46px;
+  }
+  h1 { font-size: clamp(68px, 15vw, 112px); }
+  .hero p, .about-copy { font-size: 14px; }
+  .photo-box { height: min(112vw, 500px); min-height: 300px; }
+  .projects { grid-template-columns: minmax(0, 1fr); }
+  .skills { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  section.content { padding: 62px 0; }
+  .about.content { padding: 62px 0; }
+  .profile { width: 100%; }
+  .contact-box { padding: 32px 24px; }
+}
+
+@media (max-width: 520px) {
+  .wrap { width: calc(100% - 32px); }
+  .logo { font-size: 25px; }
+  .hero { padding-top: 42px; gap: 25px; }
+  .eyebrow, .kicker { font-size: 9px; letter-spacing: 2px; }
+  h1 { font-size: clamp(62px, 18vw, 88px); margin: 22px 0; }
+  h2 { font-size: clamp(42px, 12vw, 60px); margin-bottom: 26px; }
+  .hero p, .about-copy { font-size: 13px; line-height: 1.75; }
+  .actions { display: grid; grid-template-columns: 1fr; gap: 10px; }
+  .actions .btn { width: 100%; }
+  .photo-box { height: 112vw; min-height: 280px; max-height: 430px; }
+  .photo-label { font-size: 8px; letter-spacing: 1.3px; }
+  .ticker { padding: 13px 0; font-size: 15px; }
+  .card { padding: 22px 18px; }
+  .card h3, .timeline h3 { font-size: 25px; }
+  .card p, .timeline p { font-size: 12px; }
+  .skills { gap: 9px; }
+  .skill { padding: 16px 12px; }
+  .skill h3 { font-size: 21px; }
+  .skill p { font-size: 11px; line-height: 1.5; }
+  .skill small { font-size: 9px; }
+  .profile { padding: 16px; }
+  .profile-row { align-items: flex-start; gap: 10px; font-size: 10px; }
+  .profile-row span { flex: 0 0 38%; }
+  .profile-row b { flex: 1; overflow-wrap: anywhere; }
+  .timeline { padding-left: 19px; }
+  .timeline article:before { left: -25px; }
+  .contact-box { padding: 28px 18px; }
+  footer { font-size: 9px; line-height: 1.7; }
+}
+
+@media (max-width: 360px) {
+  .wrap { width: calc(100% - 26px); }
+  .skills { grid-template-columns: 1fr 1fr; }
+  .profile-row { font-size: 9px; }
+  .intro-title { font-size: 20vw; }
+  .intro-sub { font-size: 9px; letter-spacing: 2px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
 </style>
 </head>
 
@@ -573,7 +705,11 @@ footer {
 <header class="wrap">
   <nav>
     <a class="logo" href="#home">JASWIN<span>®</span></a>
-    <div class="links">
+    <button class="menu-toggle" type="button" aria-label="Open navigation menu"
+      aria-expanded="false" aria-controls="site-links">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="links" id="site-links">
       <a href="#work">Missions</a>
       <a href="#about">Player</a>
       <a href="#skills">Skills</a>
@@ -754,6 +890,35 @@ footer {
 document.getElementById('enter').addEventListener('click', () => {
   document.getElementById('intro').classList.add('hidden');
 });
+
+
+const menuToggle = document.querySelector('.menu-toggle');
+const siteLinks = document.querySelector('#site-links');
+
+if (menuToggle && siteLinks) {
+  menuToggle.addEventListener('click', () => {
+    const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
+    menuToggle.setAttribute('aria-expanded', String(!isOpen));
+    menuToggle.setAttribute('aria-label', isOpen ? 'Open navigation menu' : 'Close navigation menu');
+    siteLinks.classList.toggle('open', !isOpen);
+  });
+
+  siteLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      siteLinks.classList.remove('open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+      menuToggle.setAttribute('aria-label', 'Open navigation menu');
+    });
+  });
+
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape') {
+      siteLinks.classList.remove('open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+      menuToggle.setAttribute('aria-label', 'Open navigation menu');
+    }
+  });
+}
 
 /* Reveal content while scrolling */
 const observer = new IntersectionObserver(entries => {
